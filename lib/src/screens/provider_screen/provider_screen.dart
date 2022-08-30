@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_test/src/provider_screen/provider/provider.dart';
+import 'package:riverpod_test/src/screens/provider_screen/provider/provider.dart';
 
 class ProviderScreen extends StatelessWidget {
   const ProviderScreen({Key? key}) : super(key: key);

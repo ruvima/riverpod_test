@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_test/src/change_notifier_screen/provider/change_notifier_provider.dart';
+import 'package:riverpod_test/src/screens/change_notifier_screen/provider/change_notifier_provider.dart';
 
 class ChangeNotifierProviderScreen extends ConsumerWidget {
   const ChangeNotifierProviderScreen({Key? key}) : super(key: key);
