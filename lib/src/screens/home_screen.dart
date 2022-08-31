@@ -26,6 +26,12 @@ class HomeScreen extends StatelessWidget {
               },
               child: const Text('Change Notifier'),
             ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.stateProviderScreen);
+              },
+              child: const Text('State Provider'),
+            ),
           ],
         ),
       ),
