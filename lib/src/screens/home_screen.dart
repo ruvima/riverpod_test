@@ -22,7 +22,8 @@ class HomeScreen extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, Routes.changeNotifierScreen);
+                Navigator.pushNamed(
+                    context, Routes.changeNotifierProviderScreen);
               },
               child: const Text('Change Notifier'),
             ),
@@ -31,6 +32,13 @@ class HomeScreen extends StatelessWidget {
                 Navigator.pushNamed(context, Routes.stateProviderScreen);
               },
               child: const Text('State Provider'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                    context, Routes.stateNotifierProviderScreen);
+              },
+              child: const Text('State Notifier Provider'),
             ),
           ],
         ),

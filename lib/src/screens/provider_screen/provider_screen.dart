@@ -1,10 +1,11 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:riverpod_test/src/screens/provider_screen/provider/provider.dart';
 
 class ProviderScreen extends StatelessWidget {
   const ProviderScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +25,9 @@ class ProviderScreen extends StatelessWidget {
 }
 
 class _WithConsumer extends StatelessWidget {
-  const _WithConsumer({Key? key}) : super(key: key);
+  const _WithConsumer({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,10 @@ class _WithConsumer extends StatelessWidget {
       builder: (_, ref, __) {
         final message1 = ref.read(message1Provider);
         return Center(
-          child: Text(message1),
+          child: Text(
+            message1,
+            style: const TextStyle(fontSize: 25),
+          ),
         );
       },
     );
@@ -46,7 +52,10 @@ class _WithConsumerWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final message2 = ref.read(message2Provider);
     return Center(
-      child: Text(message2),
+      child: Text(
+        message2,
+        style: const TextStyle(fontSize: 25),
+      ),
     );
   }
 }
@@ -71,7 +80,10 @@ class __WithConsumerStatefulWidgetState
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(message3),
+      child: Text(
+        message3,
+        style: const TextStyle(fontSize: 25),
+      ),
     );
   }
 }
