@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
     final list = ItemObjects.getList();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Screen'),
+        title: const Text('Riverpod - Type of Providers'),
       ),
       body: ListView.builder(
           itemBuilder: (context, index) {
