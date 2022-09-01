@@ -7,31 +7,24 @@ class StateNotifierProviderScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorSetting = ref.watch(colorSettingsProvider);
-
+    final randomNumber = ref.watch(randomNumberProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('State notifier Provider'),
+        title: const Text('State Notifier Provider'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              children: [
-                Checkbox(
-                  value: colorSetting.useRed,
-                  onChanged: (isChecked) =>
-                      onCheckBoxPressed(isChecked, context, ref),
-                ),
-                Text('Rojo')
-              ],
+            Text(
+              '$randomNumber',
+              style: Theme.of(context).textTheme.headline3,
             ),
-            Container(
-              color: colorSetting.useRed ? Colors.red : Colors.black38,
-              padding: const EdgeInsets.all(10),
-              margin: const EdgeInsets.all(10),
-            ),
+            TextButton(
+                onPressed: () {
+                  ref.read(randomNumberProvider.notifier).generateRandom();
+                },
+                child: const Text('Generate Number'))
           ],
         ),
       ),
@@ -39,15 +32,52 @@ class StateNotifierProviderScreen extends ConsumerWidget {
   }
 }
 
-void onCheckBoxPressed(
-  bool? isChecked,
-  BuildContext context,
-  WidgetRef ref,
-) {
-  var colorSettingsNotifier = ref.read(colorSettingsProvider.notifier);
-  if (isChecked!) {
-    colorSettingsNotifier.setRed();
-  } else {
-    colorSettingsNotifier.unRed();
-  }
-}
+// class StateNotifierProviderScreen extends ConsumerWidget {
+//   const StateNotifierProviderScreen({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     final colorSetting = ref.watch(colorSettingsProvider);
+
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('State notifier Provider'),
+//       ),
+//       body: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             Row(
+//               children: [
+//                 Checkbox(
+//                   value: colorSetting.useRed,
+//                   onChanged: (isChecked) =>
+//                       onCheckBoxPressed(isChecked, context, ref),
+//                 ),
+//                 Text('Rojo')
+//               ],
+//             ),
+//             Container(
+//               color: colorSetting.useRed ? Colors.red : Colors.black38,
+//               padding: const EdgeInsets.all(10),
+//               margin: const EdgeInsets.all(10),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// void onCheckBoxPressed(
+//   bool? isChecked,
+//   BuildContext context,
+//   WidgetRef ref,
+// ) {
+//   var colorSettingsNotifier = ref.read(colorSettingsProvider.notifier);
+//   if (isChecked!) {
+//     colorSettingsNotifier.setRed();
+//   } else {
+//     colorSettingsNotifier.unRed();
+//   }
+// }

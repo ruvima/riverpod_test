@@ -1,23 +1,37 @@
+import 'dart:math';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final colorSettingsProvider =
-    StateNotifierProvider<ColorSettingsNotifier, ColorSettings>((ref) {
-  return ColorSettingsNotifier(ColorSettings(false));
-});
+final randomNumberProvider = StateNotifierProvider<RandomNumberNotifier, int>(
+    (ref) => RandomNumberNotifier());
 
-class ColorSettings {
-  final bool useRed;
-  ColorSettings(this.useRed);
-}
+class RandomNumberNotifier extends StateNotifier<int> {
+  RandomNumberNotifier() : super(Random().nextInt(9999));
 
-class ColorSettingsNotifier extends StateNotifier<ColorSettings> {
-  ColorSettingsNotifier(ColorSettings state) : super(state);
-
-  void setRed() {
-    state = ColorSettings(true);
-  }
-
-  void unRed() {
-    state = ColorSettings(false);
+  void generateRandom() {
+    final random = Random();
+    state = random.nextInt(9999);
   }
 }
+
+// final colorSettingsProvider =
+//     StateNotifierProvider<ColorSettingsNotifier, ColorSettings>((ref) {
+//   return ColorSettingsNotifier(ColorSettings(false));
+// });
+
+// class ColorSettings {
+//   final bool useRed;
+//   ColorSettings(this.useRed);
+// }
+
+// class ColorSettingsNotifier extends StateNotifier<ColorSettings> {
+//   ColorSettingsNotifier(ColorSettings state) : super(state);
+
+//   void setRed() {
+//     state = ColorSettings(true);
+//   }
+
+//   void unRed() {
+//     state = ColorSettings(false);
+//   }
+// }

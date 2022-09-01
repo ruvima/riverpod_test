@@ -40,6 +40,18 @@ class HomeScreen extends StatelessWidget {
               },
               child: const Text('State Notifier Provider'),
             ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.futureProviderScreen);
+              },
+              child: const Text('Future Notifier Provider'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.streamProviderScreen);
+              },
+              child: const Text('Stream Notifier Provider'),
+            ),
           ],
         ),
       ),
