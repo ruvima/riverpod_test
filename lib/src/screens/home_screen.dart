@@ -1,60 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:riverpod_test/src/routes/routes.dart';
+import 'package:riverpod_test/src/models/item_objects.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final list = ItemObjects.getList();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home Screen'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, Routes.providerScreen);
-              },
-              child: const Text('Provider'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                    context, Routes.changeNotifierProviderScreen);
-              },
-              child: const Text('Change Notifier'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, Routes.stateProviderScreen);
-              },
-              child: const Text('State Provider'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                    context, Routes.stateNotifierProviderScreen);
-              },
-              child: const Text('State Notifier Provider'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, Routes.futureProviderScreen);
-              },
-              child: const Text('Future Notifier Provider'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, Routes.streamProviderScreen);
-              },
-              child: const Text('Stream Notifier Provider'),
-            ),
-          ],
-        ),
-      ),
+      body: ListView.builder(
+          itemBuilder: (context, index) {
+            final itemList = list[index];
+            return Card(
+              elevation: 1,
+              child: ListTile(
+                title: Text(itemList.title),
+                subtitle: Text(itemList.description),
+                trailing: const Icon(Icons.arrow_forward),
+                onTap: () => Navigator.pushNamed(context, itemList.routeName),
+              ),
+            );
+          },
+          itemCount: list.length),
     );
   }
 }
