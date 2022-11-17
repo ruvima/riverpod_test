@@ -1,6 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_test/src/screens/stream_provider_screen/provider/stream_provider.dart';
+
+final List names = [
+  'Juliet',
+  'Lily ',
+  'Olive ',
+  'Emmett',
+  'Miles',
+  'Oscar',
+  'William ',
+  'George',
+  'Amelia',
+];
+
+final tickerProvider = StreamProvider.autoDispose<int>(
+  (_) => Stream.periodic(
+    const Duration(seconds: 1),
+    (i) => i + 1,
+  ),
+);
+
+final countProvider = StreamProvider.autoDispose(
+  (ref) => ref.watch(tickerProvider.stream).map(
+        (count) => names.getRange(0, count),
+      ),
+);
 
 class StreamProviderScreen extends StatelessWidget {
   const StreamProviderScreen({Key? key}) : super(key: key);
@@ -13,17 +37,21 @@ class StreamProviderScreen extends StatelessWidget {
         ),
         body: Consumer(
           builder: (context, ref, child) {
-            final streamValue = ref.watch(streamProvider);
-            return Center(
-              child: streamValue.when(
-                data: (data) {
-                  return Text(
-                    data.toString(),
-                    style: const TextStyle(fontSize: 25),
+            final namesProvider = ref.watch(countProvider);
+            return namesProvider.when(
+              data: (data) => ListView.builder(
+                itemCount: data.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(
+                      data.elementAt(index),
+                    ),
                   );
                 },
-                error: (e, st) => Text('Error $e'),
-                loading: () => const CircularProgressIndicator(),
+              ),
+              error: (_, __) => const Center(child: Text('END')),
+              loading: () => const Center(
+                child: CircularProgressIndicator(),
               ),
             );
           },

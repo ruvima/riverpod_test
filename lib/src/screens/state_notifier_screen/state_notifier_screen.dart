@@ -1,6 +1,19 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_test/src/screens/state_notifier_screen/provider/state_notifier_provider.dart';
+
+final randomNumberProvider = StateNotifierProvider<RandomNumberNotifier, int>(
+    (ref) => RandomNumberNotifier());
+
+class RandomNumberNotifier extends StateNotifier<int> {
+  RandomNumberNotifier() : super(Random().nextInt(9999));
+
+  void generateRandom() {
+    final random = Random();
+    state = random.nextInt(9999);
+  }
+}
 
 class StateNotifierProviderScreen extends ConsumerWidget {
   const StateNotifierProviderScreen({Key? key}) : super(key: key);

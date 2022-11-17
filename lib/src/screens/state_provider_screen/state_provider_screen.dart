@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_test/src/screens/state_provider_screen/provider/state_provider.dart';
+
+final counterProvider = StateProvider.autoDispose<int>((ref) => 0);
 
 class StateProviderScreen extends ConsumerWidget {
   const StateProviderScreen({Key? key}) : super(key: key);

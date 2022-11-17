@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:riverpod_test/src/screens/provider_screen/provider/provider.dart';
+final message1Provider = Provider<String>((ref) => 'Consumer');
+final message2Provider = Provider<String>((ref) => 'ConsumerWidget');
+final message3Provider = Provider<String>((ref) => 'ConsumerStatefulWidget');
 
 class ProviderScreen extends StatelessWidget {
   const ProviderScreen({Key? key}) : super(key: key);
